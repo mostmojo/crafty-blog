@@ -13,7 +13,13 @@
                         <span class="meta">Posted by
                             <a href="#">{{ entry.author }}</a>
                             on
-                            {{ entry.postDate | date('M d, Y')}}</span>
+                            {{ entry.postDate | date('M d, Y')}}
+                            in
+                            {% for category in entry.category %}
+                                <a href="/categories/{{ category.slug }}">
+                                    {{ category }}</a>
+                            {% endfor %}
+                        </span>
                     </div>
                 </div>
             </div>
