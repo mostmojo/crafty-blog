@@ -2,7 +2,8 @@
 {% block main %}
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/home-bg-new.jpg')">
+    {% set entryImage = entry.blogImage.one() %}
+    <header class="masthead" style="background-image: url('{{ entryImage.getUrl() }}')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -15,8 +16,8 @@
                             on
                             {{ entry.postDate | date('M d, Y')}}
                             in
-                            {% for category in entry.category %}
-                                <a href="/categories/{{ category.slug }}">
+                            {% for category in entry.category.all() %}
+                                <a href="{{ category.url }}">
                                     {{ category }}</a>
                             {% endfor %}
                         </span>
